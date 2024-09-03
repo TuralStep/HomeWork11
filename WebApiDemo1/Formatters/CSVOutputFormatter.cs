@@ -6,10 +6,10 @@ using WebApiDemo1.Entities;
 
 namespace WebApiDemo1.Formatters
 {
-    public class VCardOutputFormatter : TextOutputFormatter
+    public class CSVOutputFormatter : TextOutputFormatter
     {
 
-        public VCardOutputFormatter()
+        public CSVOutputFormatter()
         {
             SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse("text/csv"));
             SupportedEncodings.Add(Encoding.UTF8);
