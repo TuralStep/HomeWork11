@@ -66,6 +66,37 @@ namespace WebApiDemo1.Controllers
                 SerioNo = dto.SerioNo
             };
             await _studentService.AddAsync(entity);
+            return Ok(entity);
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] StudentAddDto dto)
+        {
+            var entity = _studentService.GetAsync(s => s.Id == id).Result;
+
+            if (entity == null) return NotFound();
+
+            entity.Fullname = dto.Fullname;
+            entity.SerioNo = dto.SerioNo;
+            entity.Score = dto.Score;
+            entity.Age = dto.Age;
+
+            await _studentService.UpdateAsync(entity);
+
+            return Ok();
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var entity = _studentService.GetAsync(s => s.Id == id).Result;
+
+            if (entity == null) return NotFound();
+
+            await _studentService.DeleteAsync(entity);
+
             return Ok();
         }
 
